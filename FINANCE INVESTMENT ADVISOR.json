@@ -1,0 +1,828 @@
+{
+  "name": "FINANCE INVESTMENT ADVISOR",
+  "nodes": [
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -224,
+        -112
+      ],
+      "id": "0bb5746c-0027-42a0-a40b-f2d6431c83a3",
+      "name": "Telegram Trigger",
+      "webhookId": "fa55aafc-9a67-4428-ab9c-12ccf2610f55",
+      "credentials": {
+        "telegramApi": {
+          "id": "JbIWlkYG3M8bJree",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {
+          "maxOutputTokens": 1000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        224,
+        272
+      ],
+      "id": "1ef9c734-5531-473a-be48-8dce0e920510",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "guyIUnTiOhBkPIQn",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "transaction ID": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('transaction_ID', ``, 'string') }}",
+            "date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('date', ``, 'string') }}",
+            "type": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('type', ``, 'string') }}",
+            "amount": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('amount', ``, 'string') }}",
+            "category": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('category', ``, 'string') }}",
+            "subcategory": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('subcategory', ``, 'string') }}",
+            "payment method": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('payment_method', ``, 'string') }}",
+            "source income": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('source_income', ``, 'string') }}",
+            "spendings": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('spendings', ``, 'string') }}",
+            "tag": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('tag', ``, 'string') }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "transaction ID",
+              "displayName": "transaction ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "type",
+              "displayName": "type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "amount",
+              "displayName": "amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "subcategory",
+              "displayName": "subcategory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "payment method",
+              "displayName": "payment method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source income",
+              "displayName": "source income",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "spendings",
+              "displayName": "spendings",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tag",
+              "displayName": "tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        352,
+        272
+      ],
+      "id": "b21b8621-cbbf-4ff8-b84a-2f8c58c989a3",
+      "name": "AddData",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SDYQSnXdzqzC1FNm",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "transaction ID": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('transaction_ID', ``, 'string') }}",
+            "date": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('date', ``, 'string') }}",
+            "type": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('type', ``, 'string') }}",
+            "amount": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('amount', ``, 'string') }}",
+            "category": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('category', ``, 'string') }}",
+            "subcategory": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('subcategory', ``, 'string') }}",
+            "payment method": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('payment_method', ``, 'string') }}",
+            "source income": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('source_income', ``, 'string') }}",
+            "spendings": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('spendings', ``, 'string') }}",
+            "tag": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('tag', ``, 'string') }}"
+          },
+          "matchingColumns": [
+            "transaction ID"
+          ],
+          "schema": [
+            {
+              "id": "transaction ID",
+              "displayName": "transaction ID",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "date",
+              "displayName": "date",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "type",
+              "displayName": "type",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "amount",
+              "displayName": "amount",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "category",
+              "displayName": "category",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "subcategory",
+              "displayName": "subcategory",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "payment method",
+              "displayName": "payment method",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "source income",
+              "displayName": "source income",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "spendings",
+              "displayName": "spendings",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "tag",
+              "displayName": "tag",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "number",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        480,
+        272
+      ],
+      "id": "6369dd6d-0c0d-4313-9924-8e86b71568ee",
+      "name": "UpdateData",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SDYQSnXdzqzC1FNm",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit#gid=0"
+        },
+        "startIndex": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start_Row_Number', ``, 'number') }}",
+        "numberToDelete": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Number_of_Rows_to_Delete', ``, 'number') }}"
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        608,
+        272
+      ],
+      "id": "a00e95fc-4b2e-4402-bc0d-78049f5aff6c",
+      "name": "DeleteData",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SDYQSnXdzqzC1FNm",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit#gid=0"
+        },
+        "combineFilters": "OR",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        736,
+        272
+      ],
+      "id": "e4332759-1b92-447f-870c-9d538c9a206d",
+      "name": "GetData",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SDYQSnXdzqzC1FNm",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "laporan",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    },
+                    "id": "8d7601ec-834a-40fa-905a-8790ad504f13"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "a822bcbc-2b37-4d50-a361-b739f6d12c55",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "rekomendasi",
+                    "operator": {
+                      "type": "string",
+                      "operation": "contains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0b97ab63-a5e2-4ae0-bd17-119e12abec70",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "laporan",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notContains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": false,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "13396017-3f42-450a-b484-c99fd4cb1dbf",
+                    "leftValue": "={{ $json.message.text }}",
+                    "rightValue": "rekomendasi",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notContains"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {
+          "ignoreCase": true
+        }
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        0,
+        -144
+      ],
+      "id": "050132f4-18d8-4c69-8530-2f0ce21e6751",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "modelName": "models/gemini-2.0-flash",
+        "options": {
+          "maxOutputTokens": 1000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        416,
+        -112
+      ],
+      "id": "be0bce3e-dde8-4a48-88ed-1080f9be8735",
+      "name": "Google Gemini Chat Model1",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "guyIUnTiOhBkPIQn",
+          "name": "Google Gemini(PaLM) Api account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit?gid=0#gid=0",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1AxcVsK9loySYEOKJeM-oIRNsJvxyXxEpKSXqOqUTojw/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.6,
+      "position": [
+        544,
+        -112
+      ],
+      "id": "5ada73ef-f676-4d5c-a598-1db18d3171a1",
+      "name": "GetDataFinance",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "SDYQSnXdzqzC1FNm",
+          "name": "Google Sheets account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "=Peran & Tujuan\nAnda adalah Financial Report & Advice Agent. Tugas Anda:\n1. Menyusun laporan transaksi dari data Google Sheets (Total Income, Total Expense, Net Cashflow, Savings Rate, Top Kategori).\n2. Memberi rekomendasi investasi sederhana berbasis arus kas & kebiasaan belanja.\nKolom data: transaction ID, date, type, amount, category, subcategory, payment method, source income, spendings, tag.\n\nCara kerja umum:\n1. Jika user minta laporan, tarik data via tool GetDataFinance, lalu filter & hitung di dalam Agent.\n2. Jika user minta rekomendasi, tarik data periode relevan (default 3–6 bulan terakhir) via GetDataFinance, analisis arus kas, lalu beri saran prioritas (dana darurat, utang, alokasi, produk umum).\n3. Selalu jawab ringkas, gunakan daftar bernomor/bullet seperlunya (tanpa “* * * *”), dan tunjukkan angka kunci.\n\nEkstraksi filter dari pesan pengguna (bebas frasa Indonesia):\n- Tahun: “tahun 2024”, “th 2025” menjadi year=2024/2025.\n- Bulan: “bulan 8/Agustus” menjadi month=08.\n- Jenis: “pemasukan saja” menjadi type=Income; “pengeluaran saja” → type=Expense.\n- Kategori/Tag opsional: “kategori Makanan”, “tag: bisnis”.\n- Rentang tanggal opsional: “1–31 Jan 2025”.\n\nAmbil data:\n- Panggil GetDataFinance tanpa filter bila ragu. Lalu filter sendiri di Agent (by year, month, type, category, tag).\n- Jika jumlah data besar, Anda boleh kirim parameter filter sederhana: contoh logika tanggal berbasis prefix YYYY-MM pada kolom date, dan exact match untuk type.\n\nAturan hitung (laporan):\n- Total Income = jumlah amount saat type=Income.\n- Total Expense = jumlah amount saat type=Expense.\n- Net Cashflow = Income – Expense.\n- Savings Rate = Net Cashflow / Income (jika Income>0).\n- Top 3 kategori pengeluaran = agregasi amount by category saat Expense.\n- Jika filter kosong maka default bulan berjalan; jika user sebut “tahun” maka hitung tahunan; jika sebut “bulan X tahun Y” → hitung bulanan.\n- Jika data kosong maka balas: “Tidak ada data pada periode/filter tersebut.”\n\nAturan saran investasi (tingkat dasar, bukan nasihat keuangan profesional):\n1. Dana darurat: target 3–6× rata-rata pengeluaran esensial (gunakan spendings atau, jika kosong, asumsi esensial = kategori: Makanan, Transportasi, Tagihan, Kesehatan).\n2. Jika net cashflow negatif → utamakan perbaiki arus kas & efisiensi pos besar.\n3. Surplus stabil → alokasikan bertahap (contoh kerangka):\n- 40–60% ke instrumen likuid berisiko rendah (contoh: pasar uang).\n- 20–40% pendapatan tetap (obligasi/pendapatan tetap).\n- 10–30% indeks saham/ekuitas bila horizon >5 tahun.\n4. Jika ada utang bunga tinggi → prioritaskan pelunasan dulu.\n5. Sertakan nominal contoh berdasarkan surplus bulanan.\n\nFormat output:\n- Laporan:\nPeriode: <bln/th>\nIncome: RpX\nExpense: RpY\nNet Cashflow: RpZ\nSavings Rate: A%\nTop Pengeluaran: 1) Kategori – Rp…; 2)…; 3)…\n- Rekomendasi (maks 5 poin eksekusi) dengan angka konkret.\n\nGaya bahasa: jelas, singkat, tanpa simbol berlebihan.\n\n(Catatan internal untuk Agent)\n\nToleransi format tanggal: YYYY-MM-DD, DD/MM/YYYY, “15 Agustus 2025”. Normalisasi ke YYYY-MM untuk agregasi bulanan.\n\nJika amount teks, konversi ke angka (hilangkan Rp, titik ribuan, koma desimal).\n\nJika Income=0 saat hitung savings rate → tampilkan “—”."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        384,
+        -336
+      ],
+      "id": "4d7775b2-03b4-4a84-8cf0-b3a084eabca6",
+      "name": "Financial Advice"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message.text }}",
+        "options": {
+          "systemMessage": "=Anda adalah seorang ahli admin manajemen keuangan pribadi dengan pengalaman lebih dari 20 tahun.\nTugas utama Anda adalah membantu saya mencatat dan mengelola transaksi keuangan pribadi, termasuk:\n- menambahkan pemasukan dan pengeluaran,\n- memperbarui transaksi yang sudah ada,\n- menampilkan laporan transaksi,\n- serta menghapus transaksi tertentu.\n\nAnda memiliki akses ke data transaksi dalam sebuah spreadsheet dengan kolom berikut:\ntransaction ID, date, type, amount, category, subcategory, payment method, source income, spendings, tag.\n\nAnda memiliki 4 tool yang dapat Anda gunakan:\n1. AddData\nKapan digunakan: Untuk mencatat pemasukan (income) atau pengeluaran (expense).\nData yang dibutuhkan:\ndate, type (Income/Expense), amount, category, subcategory, payment method, source income, spendings, tag.\n\nData tambahan yang perlu Anda buat:\nBuat transaction ID unik dengan format:\n- IN-<yyyyMMddHHmmss>-<4hurufAcak> untuk transaksi Income,\n- OUT-<yyyyMMddHHmmss>-<4hurufAcak> untuk transaksi Expense.\nContoh: IN-20250815193020-ABCD atau OUT-20250815193245-WXYZ.\n\nOutput setelah berhasil: Konfirmasi penambahan transaksi + tampilkan transaction ID.\nOutput jika gagal: \"Transaksi gagal ditambahkan. Data tidak lengkap.\"\n\n2. UpdateData\nTujuan: Memodifikasi informasi transaksi yang sudah ada.\nData wajib: transaction ID + kolom spesifik yang ingin diubah.\n\nAlur logika:\n- Selalu lakukan GetData dulu untuk memastikan transaksi ada.\n- Gabungkan data lama dengan data baru (update hanya kolom yang disebut).\n- Kirim seluruh data transaksi yang sudah lengkap ke tool UpdateData.\n\nOutput berhasil: \"Transaksi dengan ID [transaction ID] berhasil diperbarui.\"\nOutput gagal: \"Transaksi tidak ditemukan atau data update tidak valid.\"\n\n3. GetData\nTujuan: Menampilkan data transaksi tertentu atau daftar transaksi berdasarkan filter (misalnya rentang waktu, kategori).\n\nOutput berhasil (format terstruktur):\nTransaction ID: <transaction ID>\nDate: <date>\nType: <Income/Expense>\nAmount: <amount>\nCategory: <category>\nSubcategory: <subcategory>\nPayment Method: <payment method>\nSource Income: <source income>\nSpendings: <spendings>\nTag: <tag>\n\nJika tidak ada data: \"Tidak ada data transaksi yang ditemukan.\"\nOutput gagal: \"Gagal mengambil data transaksi. Mohon coba lagi nanti.\"\n\n4. DeleteData\nTujuan: Menghapus transaksi berdasarkan transaction ID.\n\nAlur logika:\n- Selalu lakukan GetData dulu untuk memastikan data ada.\n- Jika ada → panggil DeleteData. Jika tidak ada → beri pesan gagal.\n\nOutput berhasil: \"Transaksi dengan ID [transaction ID] berhasil dihapus.\"\nOutput gagal: \"Transaksi dengan ID [transaction ID] tidak ditemukan. Gagal menghapus.\"\n\nInstruksi Umum untuk Respons\nGunakan bahasa yang ringkas, jelas, dan mudah dipahami.\nJika gagal, sertakan penyebab & solusi (misal: \"Pastikan transaction ID benar\" atau \"Sertakan jumlah dan kategori\").\nSelalu tampilkan transaction ID pada output berhasil agar mudah dilacak."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        384,
+        48
+      ],
+      "id": "e72a33d7-1d6c-4fb5-9319-2d73179907f3",
+      "name": "Financial Recap"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        944,
+        48
+      ],
+      "id": "c7c12a3b-e4c6-471a-83fb-c3757986915c",
+      "name": "Send Information to Telegram",
+      "webhookId": "bc9baf03-3590-4a24-a752-38a9320b38e0",
+      "credentials": {
+        "telegramApi": {
+          "id": "JbIWlkYG3M8bJree",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('Telegram Trigger').item.json.message.chat.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "parse_mode": "HTML"
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        944,
+        -336
+      ],
+      "id": "caeb3853-8dd1-4772-bb5d-b12184c5d6cc",
+      "name": "Send Report to Telegram",
+      "webhookId": "bc9baf03-3590-4a24-a752-38a9320b38e0",
+      "credentials": {
+        "telegramApi": {
+          "id": "JbIWlkYG3M8bJree",
+          "name": "Telegram account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Financial Recap",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AddData": {
+      "ai_tool": [
+        [
+          {
+            "node": "Financial Recap",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UpdateData": {
+      "ai_tool": [
+        [
+          {
+            "node": "Financial Recap",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "DeleteData": {
+      "ai_tool": [
+        [
+          {
+            "node": "Financial Recap",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetData": {
+      "ai_tool": [
+        [
+          {
+            "node": "Financial Recap",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Financial Advice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Financial Advice",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Financial Recap",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Financial Recap",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Financial Advice",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "GetDataFinance": {
+      "ai_tool": [
+        [
+          {
+            "node": "Financial Advice",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Financial Advice": {
+      "main": [
+        [
+          {
+            "node": "Send Report to Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Financial Recap": {
+      "main": [
+        [
+          {
+            "node": "Send Information to Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "97428cf6-444a-4333-a90f-6be0eed69191",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "1ef395c969a07a12d732a84bc189542686fe9d4a4764919a762d9b2bcb909854"
+  },
+  "id": "GuSXCKXS81WUNxs7",
+  "tags": []
+}
